@@ -7,6 +7,12 @@
     session_start();
     header("Content-type: text/xml");
 
+    $urlPath = "http://192.168.3.250/cisco/tictac.php";
+
+    # Used to adjust display to match current phone model.
+    function getCiscoPhoneModel() {
+        return $_SERVER['HTTP_X_CISCOIPPHONEMODELNAME'] ?? 'unknown';
+    }
 
     # Recall prior variable state
     $id = $_SESSION['id'] ?? "";        # App name.
@@ -23,7 +29,35 @@
 
     else 
         $bd = array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ); 
-    
+
+
+	// Set display variables based on phone model.
+	$model = getCiscoPhoneModel();
+
+	switch($model) {
+        case 'CP-7911G' :
+			$indent = "\t\t";
+			$offset = "";
+			$linefeed = "";
+			$newline = "\n";
+            break;
+
+        case 'CP-7961G-GE' :
+			$indent = "\t\t\t\t\t\t\t\t";
+			$offset = " ";
+			$linefeed = " \n";
+			$newline = "\n";
+            break;
+
+        default : # Cisco Communicator
+			$indent = "\t\t\t\t\t\t\t\t";
+			$offset = " ";
+			$linefeed = " \n \n";
+			$newline = "\n\n";
+            break;
+    }
+
+
     // Get SoftKey selection and move position.
     $cmd = $_GET['key'] ?? 0;
     $move = $_GET['move'] ?? 0; 
@@ -32,17 +66,18 @@
     const TIE = 0;
     const COMPUTER = -1;
     
-    
     // A function to show X or O on the board.
     function token($cell)
-    {
+	{
+		global $offset;
+
         switch($cell) {
             case -1 :
                 return "O";
             case  0 :
-                return "-";
+                return "~";
             case  1 :
-                return "X";
+                return "X" . $offset;
         }
         return;
     }
@@ -329,11 +364,15 @@
         case 4 :
             echo "<CiscoIPPhoneText>\n";
             echo "  <Title>Tic Tac Toe</Title>\n";
-            echo "  <Text>";
-            printf("\t\t\t\t%s\t\t%s\t\t%s\n", token($bd[1]), token($bd[2]), token($bd[3]));
-            printf("\t\t\t\t%s\t\t%s\t\t%s\n", token($bd[4]), token($bd[5]), token($bd[6]));
-            printf("\t\t\t\t%s\t\t%s\t\t%s\n", token($bd[7]), token($bd[8]), token($bd[9]));
-            echo "  </Text>\n";
+			echo "  <Text>";
+			echo $linefeed;
+			printf("%s\t\t%s\t\t%s\t\t%s", $indent, token($bd[1]), token($bd[2]), token($bd[3]));
+			echo $newline;
+			printf("%s\t\t%s\t\t%s\t\t%s", $indent, token($bd[4]), token($bd[5]), token($bd[6]));
+			echo $newline;
+            printf("%s\t\t%s\t\t%s\t\t%s", $indent, token($bd[7]), token($bd[8]), token($bd[9]));
+            echo $linefeed;
+			echo "  </Text>\n";
 
             if ($mode == 0) {
                 echo "  <SoftKeyItem>\n";
@@ -359,7 +398,7 @@
                 echo "  <SoftKeyItem>\n";
                 echo "	<Name>Move</Name>\n";
                 echo "	<URL>http://192.168.3.250/cisco/tictac.php?key=4</URL>\n";
-                echo "	<Position>2</Position>\n";
+                echo "	<Position>1</Position>\n";
                 echo "  </SoftKeyItem>\n";
             }
         
