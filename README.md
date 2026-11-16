@@ -1,5 +1,8 @@
 # Tic-Tac-Toe
-
+<div align="center">
+  
+![Screenshot of Tic Tac Toe](tictac.png)
+</div>
 <p>Tic-Tac-Toe is a classic, fast-paced paper-and-pencil strategy game for two players. Because the board has only nine spaces and a limited number of possible combinations, it is known as a "solved" game. If both players use optimal strategy, every match ends in a tie, but learning a few simple patterns guarantees you will either win against casual opponents or force a draw.</p>
 <p>In this version you can choose the skill level of your opponent. Picking Easy will almost guarantee a win for every game, as the opponent doesn't incorporate any strategy. Selecting Medium or Hard increases the difficulty, where the Hard selection will always result with a loss or tie when the Opponent takes the first move. Good luck!</p>
 
