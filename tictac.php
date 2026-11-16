@@ -9,7 +9,7 @@
 
 
     # Recall prior variable state
-    $id = $_SESSION['id'] ?? "";                  # App name.
+    $id = $_SESSION['id'] ?? "";        # App name.
 
     # Prevent data corruption to next application.
 	if ($id == "tictac") {
