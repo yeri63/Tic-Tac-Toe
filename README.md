@@ -20,9 +20,9 @@
 
 * Open in a corner when going first. Starting in a corner gives your opponent the fewest safe responses. If they place their first O anywhere except the center square, you can force a win by claiming the remaining corners and creating two winning lines at once.
 
-*Control the center when going second. If your opponent starts in a corner or on an edge, immediately take the middle square. If they start in the center, claim any corner instead.
+* Control the center when going second. If your opponent starts in a corner or on an edge, immediately take the middle square. If they start in the center, claim any corner instead.
 
-*Create and block forks. A "fork" occurs when a single move gives you two different ways to get three in a row on your next turn, making it impossible for your opponent to block both. Always look for chances to set up a fork, and watch the board so you can block your opponent from building one.
+* Create and block forks. A "fork" occurs when a single move gives you two different ways to get three in a row on your next turn, making it impossible for your opponent to block both. Always look for chances to set up a fork, and watch the board so you can block your opponent from building one.
 
 * Prioritize immediate threats. On every turn, follow a strict checklist. First, take a winning three-in-a-row move if one is open. Second, block your opponent if they have two in a row. Third, build or block a fork before taking empty corners or edges.
 
